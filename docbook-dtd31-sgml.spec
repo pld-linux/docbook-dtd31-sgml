@@ -13,6 +13,7 @@ Source0:	http://www.oasis-open.org/docbook/sgml/%{ver}/docbk%{sver}.zip
 Requires(post,postun):	sgml-common >= 0.5
 Requires:	sgmlparser
 Requires:	sgml-common >= 0.5
+BuildRequires:	unzip
 Provides:	docbook-dtd
 Obsoletes:	docbook%{sver}-dtd
 BuildArch:	noarch
