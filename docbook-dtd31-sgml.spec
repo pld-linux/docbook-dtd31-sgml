@@ -8,8 +8,6 @@ Release:	12
 Vendor:		OASIS
 License:	Free
 Group:		Applications/Publishing/SGML
-Group(de):	Applikationen/Publizieren/SGML
-Group(pl):	Aplikacje/Publikowanie/SGML
 URL:		http://www.oasis-open.org/docbook/
 Source0:	http://www.oasis-open.org/docbook/sgml/%{ver}/docbk%{sver}.zip
 Prereq:		sgml-common >= 0.5
