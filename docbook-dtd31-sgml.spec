@@ -1,5 +1,5 @@
 Summary:	DocBook - DTD for technical documentation
-Summary(pl):	DocBook - DTD przeznaczone do pisania dokumentacji technicznej 
+Summary(pl):	DocBook - DTD przeznaczone do pisania dokumentacji technicznej
 %define ver	3.1
 %define sver	31
 Name:		docbook-dtd%{sver}-sgml
@@ -21,14 +21,14 @@ Obsoletes:	docbook-sgml-%{ver}
 %description
 DocBook - DTD for technical documentation.
 
-%description -l pl 
+%description -l pl
 DocBook DTD jest zestawem definicji dokumentów przeznaczonych do
 tworzenia dokumentacji programistycznej. Stosowany jest do pisania
 podrêczników systemowych, instrukcji technicznych jak i wielu innych
 ciekawych rzeczy.
 
 %prep
-%setup -q -c -T 
+%setup -q -c -T
 unzip -qa %{SOURCE0}
 chmod 644 *
 
@@ -56,5 +56,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz 
+%doc *.gz
 %{_datadir}/sgml/docbook/*
