@@ -10,14 +10,15 @@ License:	Free
 Group:		Applications/Publishing/SGML
 URL:		http://www.oasis-open.org/docbook/
 Source0:	http://www.oasis-open.org/docbook/sgml/%{ver}/docbk%{sver}.zip
+BuildRequires:	unzip
 Requires(post,postun):	sgml-common >= 0.5
 Requires:	sgmlparser
 Requires:	sgml-common >= 0.5
 Provides:	docbook-dtd
 Obsoletes:	docbook%{sver}-dtd
+Obsoletes:	docbook-sgml-%{ver}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	docbook-sgml-%{ver}
 
 %description
 DocBook - DTD for technical documentation.
