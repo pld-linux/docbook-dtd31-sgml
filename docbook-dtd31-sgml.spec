@@ -4,14 +4,16 @@ Summary(pl):	DocBook - DTD przeznaczone do pisania dokumentacji technicznej
 %define sver	31
 Name:		docbook-dtd%{sver}-sgml
 Version:	1.0
-Release:	12
+Release:	13
 Vendor:		OASIS
 License:	Free
 Group:		Applications/Publishing/SGML
 URL:		http://www.oasis-open.org/docbook/
 Source0:	http://www.oasis-open.org/docbook/sgml/%{ver}/docbk%{sver}.zip
-Prereq:		sgml-common >= 0.5
+BuildRequires:	sgml-common >= 0.5-9
+Requires(post,postun):	sgml-common >= 0.5
 Requires:	sgmlparser
+Requires:	sgml-common >= 0.5-9
 Provides:	docbook-dtd
 Obsoletes:	docbook%{sver}-dtd
 BuildArch:	noarch
@@ -28,33 +30,40 @@ podrêczników systemowych, instrukcji technicznych jak i wielu innych
 ciekawych rzeczy.
 
 %prep
-%setup -q -c -T
-unzip -qa %{SOURCE0}
+%setup -q -c %{SOURCE0}
 chmod 644 *
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/sgml-dtd-%{ver}
 
-install *.dtd *.mod *.dcl $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/sgml-dtd-%{ver}
+for ent in *.dtd *.mod *.dcl ; do
+	sgml-iso-ent-fix < $ent > $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/sgml-dtd-%{ver}/$ent
+done
 
 # install catalog (but filter out ISO entities)
 grep -v 'ISO ' docbook.cat > $RPM_BUILD_ROOT%{_datadir}/sgml/docbook/sgml-dtd-%{ver}/catalog
 
-gzip -9nf *.txt
-[ ! -f ChangeLog ] || gzip -9nf ChangeLog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%triggerpostun -- %{name} < 1.0-13
+if ! grep -q /etc/sgml/sgml-docbook-%{ver}.cat /etc/sgml/catalog ; then
+	/usr/bin/install-catalog --add /etc/sgml/sgml-docbook-%{ver}.cat /usr/share/sgml/docbook/sgml-dtd-%{ver}/catalog > /dev/null
+fi
+
 %post
-# Update the centralized catalog corresponding to this version of the DTD
-/usr/bin/install-catalog --add /etc/sgml/sgml-docbook-%{ver}.cat /usr/share/sgml/docbook/sgml-dtd-%{ver}/catalog > /dev/null
+if ! grep -q /etc/sgml/sgml-docbook-%{ver}.cat /etc/sgml/catalog ; then
+	/usr/bin/install-catalog --add /etc/sgml/sgml-docbook-%{ver}.cat /usr/share/sgml/docbook/sgml-dtd-%{ver}/catalog > /dev/null
+fi
 
 %postun
-/usr/bin/install-catalog --remove /etc/sgml/sgml-docbook-%{ver}.cat /usr/share/sgml/docbook/sgml-dtd-%{ver}/catalog > /dev/null
+if [ "$1" = "0" ] ; then
+	/usr/bin/install-catalog --remove /etc/sgml/sgml-docbook-%{ver}.cat /usr/share/sgml/docbook/sgml-dtd-%{ver}/catalog > /dev/null
+fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc *.txt ChangeLog
 %{_datadir}/sgml/docbook/*
