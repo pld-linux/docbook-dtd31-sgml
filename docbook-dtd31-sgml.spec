@@ -4,7 +4,7 @@ Summary(pl):	DocBook - DTD przeznaczone do pisania dokumentacji technicznej
 %define sver	31
 Name:		docbook-dtd%{sver}-sgml
 Version:	1.0
-Release:	11
+Release:	12
 Vendor:		OASIS
 License:	Free
 Group:		Applications/Publishing/SGML
@@ -12,7 +12,7 @@ Group(de):	Applikationen/Publizieren/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
 URL:		http://www.oasis-open.org/docbook/
 Source0:	http://www.oasis-open.org/docbook/sgml/%{ver}/docbk%{sver}.zip
-Requires:	sgml-common >= 0.5
+Prereq:		sgml-common >= 0.5
 Requires:	sgmlparser
 Provides:	docbook-dtd
 Obsoletes:	docbook%{sver}-dtd
