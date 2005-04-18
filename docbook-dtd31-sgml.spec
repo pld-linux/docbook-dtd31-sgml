@@ -4,7 +4,7 @@ Summary(pl):	DocBook - DTD przeznaczone do pisania dokumentacji technicznej
 %define sver	31
 Name:		docbook-dtd%{sver}-sgml
 Version:	1.0
-Release:	15
+Release:	16
 Vendor:		OASIS
 License:	Free
 Group:		Applications/Publishing/SGML
