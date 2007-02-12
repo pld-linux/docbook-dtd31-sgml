@@ -1,5 +1,5 @@
 Summary:	DocBook - DTD for technical documentation
-Summary(pl):	DocBook - DTD przeznaczone do pisania dokumentacji technicznej
+Summary(pl.UTF-8):   DocBook - DTD przeznaczone do pisania dokumentacji technicznej
 %define ver	3.1
 %define sver	31
 Name:		docbook-dtd%{sver}-sgml
@@ -24,10 +24,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 DocBook - DTD for technical documentation.
 
-%description -l pl
-DocBook DTD jest zestawem definicji dokumentów przeznaczonych do
+%description -l pl.UTF-8
+DocBook DTD jest zestawem definicji dokumentÃ³w przeznaczonych do
 tworzenia dokumentacji programistycznej. Stosowany jest do pisania
-podrêczników systemowych, instrukcji technicznych jak i wielu innych
+podrÄ™cznikÃ³w systemowych, instrukcji technicznych jak i wielu innych
 ciekawych rzeczy.
 
 %prep
